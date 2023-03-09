@@ -1,7 +1,12 @@
 import React from 'react';
 import { signInWithPopup} from "firebase/auth";
 import {auth, provider} from '../firebase-config'
-import '../App.css'
+import '../App.css';
+import google_logo from '../imageAssests/google_logo.png'
+
+
+// style={{ display: 'flex', justifyContent: 'center', height: '100vh', alignItems: 'center' }
+//{ <img className="googleLogo" src={google_logo} />} <span> <img className="googleLogo" src={google_logo} /> </span>
 
 
 function SignIn() {
@@ -12,8 +17,11 @@ function SignIn() {
         };
     
     return (
-        <div style={{ display: 'flex', justifyContent: 'center', height: '100vh', alignItems: 'center' }}>
-            <button onClick={signInWithGoogle} style={{ padding: '30px', fontSize: '20px', borderRadius: '0', fontWeight: '600' }}>Sign In With Google</button>
+        <div 
+          
+        
+        >
+            <button className="signInBtn" onClick={signInWithGoogle} >Sign In   </button>
         </div>
     )
 }

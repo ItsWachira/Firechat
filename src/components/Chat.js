@@ -3,6 +3,8 @@ import { db, auth } from '../firebase-config'
 import SendMessage from './SendMessage'
 import { collection, query,limit, orderBy, onSnapshot} from "firebase/firestore";
 import '../App.css'
+import './chat.styles.css'
+
 
 
 function Chat() {
@@ -30,10 +32,17 @@ function Chat() {
   }, []);
  
     return (
-        <div className="container">
+        <div className="chat-container">
              <button 
-             onClick={() => auth.signOut()}
-             style={{ width: '100%', fontSize: '15px', fontWeight: '550', marginLeft: '5px', marginBottom: '-3px' }} 
+              className="signOutBtn"
+             onClick={() => {
+              
+              auth.signOut();
+              
+             
+              
+              
+              } }
              
              
              >Sign Out</button>
@@ -42,7 +51,7 @@ function Chat() {
         
               {messages && messages.map((message, id, uid, photoURL) => 
                 <div>
-                <div key={id} className={`msg ${userID === auth.currentUser.uid ? 'received' : 'sent'}`}>
+                <div key={id} className={`msg ${message.uid === auth.currentUser.uid ? 'sent' : 'received'}`}>
                   <img src={message.photoURL} />
                   <p>{message.text}</p>
 
@@ -52,7 +61,8 @@ function Chat() {
            </div>
           
           
-          <SendMessage />
+          <SendMessage  scroll={scroll} />
+          <div ref={scroll}></div>
 
         </div>
     )
